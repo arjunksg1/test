@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run jar
-        run: java -jar test.jar $API_SECRET
+        run: java -jar test.jar $secrets.API_SECRET
