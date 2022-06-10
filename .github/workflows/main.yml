@@ -29,12 +29,8 @@ jobs:
         with:
           repo: 'arjunksg1/TestJava'
           version: 'tags/v0.1'
-          file: 'jars.zip'
+          file: 'testJava.jar'
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Unzips jars.zip
-      - name: Unzip release asset
-        run: unzip jars.zip
 
       # Runs a single command using the runners shell
       - name: Run jar
