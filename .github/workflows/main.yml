@@ -7,9 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,7 +22,20 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      # Downloads asset
+      - name: Download asset
+      - uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'arjunksg1/TestJava'
+          version: 'tags/v0.1'
+          file: 'jars.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Unzips jars.zip
+      - name: Unzip release asset
+        run: unzip jars.zip
 
       # Runs a single command using the runners shell
       - name: Run jar
-        run: java -jar test.jar ${{ secrets.API_SECRET }}
+        run: java -jar testJava.jar
